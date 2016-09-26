@@ -14,6 +14,10 @@ public abstract class Validator {
     }
 
     public boolean validate() {
+        if (handler != null) {
+            handler.onValidate();
+        }
+
         for (Rule rule : rules) {
             if (!rule.isValid()) {
                 if (handler != null) {

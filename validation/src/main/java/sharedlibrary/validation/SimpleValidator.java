@@ -45,6 +45,23 @@ public final class SimpleValidator extends Validator {
             return this;
         }
 
+        public Builder observableHandler(final ObservableField<String> error) {
+            this.handler = new ValidationHandler() {
+                @Override
+                public void onValidate() {
+                    // clear error message
+                    error.set(null);
+                }
+
+                @Override
+                public void onInvalid(String message) {
+                    error.set(message);
+                }
+            };
+
+            return this;
+        }
+
         public Builder addRule(Rule rule) {
             rules.add(rule);
             return this;
