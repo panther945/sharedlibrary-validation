@@ -91,5 +91,15 @@ public final class SimpleValidator extends Validator {
             rules.add(new ContinuousWordRule(label, field, count));
             return this;
         }
+
+        public Builder equalTo(String label, ObservableField<String> other) {
+            rules.add(new EqualToRule(this.label, field, label, other));
+            return this;
+        }
+
+        public Builder notEqualTo(String label, ObservableField<String> other) {
+            rules.add(new NotEqualToRule(this.label, field, label, other));
+            return this;
+        }
     }
 }
